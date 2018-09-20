@@ -32,7 +32,7 @@ export class ProdutosRoute extends BaseRoute {
       {nome: 'Xbox 360', valor: 600.00, qtDisponivel: 5},
       {nome: 'Xbox One', valor: 4000.99, qtDisponivel: 5},
       {nome: 'Xbox', valor: 1000.99, qtDisponivel: 5},
-      {nome: 'Play Statiton 2', valor: 4000.99, qtDisponivel: 0},
+      {nome: 'Play Statiton', valor: 4000.99, qtDisponivel: 0},
     ];
     res.json(produtos);
     next();
