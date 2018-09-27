@@ -9,6 +9,8 @@ export abstract class BaseRoute {
   protected router = Router();
   protected connection: any = {};
 
+  protected ENDPOINT_CRM_SAC = 'http://localhost:4000/api';
+
   public async connect (name: string): Promise<any> {
     return {};
   }

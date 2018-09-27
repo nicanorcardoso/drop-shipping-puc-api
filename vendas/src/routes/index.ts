@@ -1,3 +1,4 @@
+import { FornecedorRoute } from './fornecedor/fornecedor.route';
 import { logger } from '@/services';
 import { NextFunction, Request, Response, Router } from 'express';
 import { ListarProdutosRoute } from './lista-produtos/lista-produtos.route';
@@ -26,6 +27,7 @@ export class ApiRoutes extends BaseRoute {
     this.router.get('/', this.get);
     this.router.use(ListarProdutosRoute.path, ListarProdutosRoute.router);
     this.router.use(ClienteRoute.path, ClienteRoute.router);
+    this.router.use(FornecedorRoute.path, FornecedorRoute.router);
   }
 
   private async get (req: Request, res: Response, next: NextFunction) {
