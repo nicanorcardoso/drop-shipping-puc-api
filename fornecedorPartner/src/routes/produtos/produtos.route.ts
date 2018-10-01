@@ -29,10 +29,10 @@ export class ProdutosRoute extends BaseRoute {
     logger.info('Rest... produtos...');
 
     const produtos = [
-      {nome: 'Xbox 360', valor: 600.00, qtDisponivel: 5},
-      {nome: 'Xbox One', valor: 4000.99, qtDisponivel: 5},
-      {nome: 'Xbox', valor: 1000.99, qtDisponivel: 5},
-      {nome: 'Play Statiton', valor: 4000.99, qtDisponivel: 0},
+      {nome: 'Produto 1', valor: 600.00, qtDisponivel: 10},
+      {nome: 'Produto 2', valor: 400.99, qtDisponivel: 10},
+      {nome: 'Produto 3', valor: 100.99, qtDisponivel: 10},
+      {nome: 'Produto 4', valor: 400.99, qtDisponivel: 10},
     ];
     res.json(produtos);
     next();

@@ -1,21 +1,14 @@
-import { NextFunction } from 'express';
-import { Cliente } from './../../models/cliente.model';
-import { loadLocalDB } from './../../services/localdb';
 import { loadLocalDB, logger } from '../../services';
 import { NextFunction, Request, Response } from 'express';
 import { BaseRoute } from '../route';
-import * as Locallydb from 'locallydb';
 import * as Loki from 'lokijs';
 import * as jwt from 'jsonwebtoken';
 import * as config from 'config';
 import { Cliente } from 'models/cliente.model';
 
-/*const DB_NAME = 'db.json';
+const DB_NAME = 'db.json';
 const db = new Loki(`../${DB_NAME}`, { persistenceMethod: 'fs' });
-const COLLECTION_NAME = 'cliente';*/
-
-const db = new Locallydb('./vendas-db');
-const clienteDB = db.collection('cliente');
+const COLLECTION_NAME = 'cliente';
 
 
 export class ClienteRoute extends BaseRoute {
@@ -69,8 +62,8 @@ export class ClienteRoute extends BaseRoute {
     time: new Date().getTime()),
     id: user.cid,
     items: req.body
-  };*/
-
+  };
+*/
   private async cadastrarCliente (req: Request, res: Response, next: NextFunction) {
     try {
       const col = await loadLocalDB(COLLECTION_NAME, db);
@@ -82,23 +75,4 @@ export class ClienteRoute extends BaseRoute {
       res.sendStatus(400);
     }
   }
-  private async atualizarCliente (req: Request, res: Response, next: NextFunction) {
-    try{
-      const cliente = clienteDB.update(req.body.id, {status: req.body.status});
-      res.status(200).send({ mensagem: 'Cliente atualizado com sucess', cliente: cliente});
-    }catch (err){
-      logger.error(err);
-      res.sendStatus(400);
-    }
-  };
-};
-/*
-private async atualizarStatusPedido (req: Request, res: Response, next: NextFunction) {
-  try {
-    const pedido = pedidoDB.update(req.body.idPedido, { status: req.body.status });
-    res.status(200).send({ mensagem: 'Pedido Atualizado com sucesso.', pedido: pedido });
-  } catch (err) {
-    logger.error(err);
-    res.sendStatus(400);
-  }
-}*/
+}

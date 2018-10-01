@@ -22,8 +22,8 @@ export abstract class BaseRoute {
   public async disconnect (name: string): Promise<boolean> {
     try {
       return true;
-    } catch (err) {
-      logger.error('Error while disconnecting from database:', err);
+    } catch (erro) {
+      logger.error('Erro ao desconectar do banco de dados:', erro);
       return false;
     }
   }

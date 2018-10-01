@@ -1,6 +1,7 @@
-import { verifyJWT } from './../../services/verifyJWT';
+import { verifyJWT } from '../../services/verifyJWT';
 import { NextFunction, Request, Response } from 'express';
 import * as REST from 'request-promise';
+import * as requisition from 'request-promise';
 import { BaseRoute } from '../route';
 
 export class ListarProdutosRoute extends BaseRoute {
@@ -25,12 +26,13 @@ export class ListarProdutosRoute extends BaseRoute {
     this.router.get('/listar', verifyJWT, this.listarProdutos);
   }
 
-  private async listarProdutos (req: Request, res: Response, next: NextFunction) {
-    REST.get('http://localhost:5000/api/produtos/', (error, response, body) => {
+  private async listarProdutos (req, res, next) {
+    requisition.get(`${this.ENDPOINT_FORNECEDOR_API}/produtos/listar`, (error, response, body) => {
       if (error) {
-        return res.json(error);
+        res.status(500).send({ mensagem: 'Erro buscar catalogo de produtos.' });
+        return false;
       }
-      res.json(JSON.parse(body));
+      res.status(200).json(JSON.parse(body));
     });
     return false;
   }
